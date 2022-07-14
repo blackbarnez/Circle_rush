@@ -76,7 +76,6 @@ static bool flagFriend = 1;
 static int dirFriend = 0;
 
 
-// функция для рисования игрока (кружочков)
 void drawPlayer(int rPlayer, int xPlayer, int yPlayer, int colorPers, int thex, int they, int xEnemy, int yEnemy, int xFriend, int yFriend) {
 
     for (int j = 1; j <= rPlayer; j++) {
@@ -106,7 +105,6 @@ void drawPlayer(int rPlayer, int xPlayer, int yPlayer, int colorPers, int thex, 
     
 }
 
-//функция для рисования врагов и друзей (квадратов)
 void drawEnemyOrFriend(int p, int x, int y, int color, int xp1, int yp1, int xp2, int yp2) {
 
     for (int j = 0; j < p; j++) {
@@ -173,7 +171,6 @@ void draw()
 {
   memset(buffer, 0, SCREEN_HEIGHT * SCREEN_WIDTH * sizeof(uint32_t));
   
-  //Большой кружок рисуем
   for (int j = rCircle; j >= rCircle-5; j--) {
       for (int i = 0; i < 360; i++) {
 
@@ -185,7 +182,6 @@ void draw()
       }
   }
 
-  // кружочки рисуем
 
   aPlayer = thetic * 0.5 * M_PI / 180;
 
@@ -219,15 +215,10 @@ void draw()
   thex2 = -1 * rCircle * cos(aPlayer);
   they2 = -1 * rCircle * sin(aPlayer);
 
- //1 кружок
-
   drawPlayer(rPlayer, xPlayer, yPlayer, colorPers, thex, they, xEnemy, yEnemy, xFriend, yFriend);
-
- //2 кружок
 
   drawPlayer(rPlayer, xPlayer2, yPlayer2, colorPers, thex2, they2, xEnemy, yEnemy, xFriend, yFriend);
 
- //рисуем врагов (которых надо избегать)
 
   if (flagEnemy == 1) {
       xEnemy = SCREEN_HEIGHT - 21;
@@ -266,8 +257,6 @@ void draw()
   else flagEnemy = 1;
 
   drawEnemyOrFriend(pEnemy, xEnemy, yEnemy, colorEnemy, xPlayer, yPlayer, xPlayer2, yPlayer2);
-  
-  //рисуем друзей (которых надо ловить)
 
   if (flagFriend == 1) {
       xFriend = SCREEN_HEIGHT - 21;
